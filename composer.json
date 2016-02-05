@@ -1,0 +1,12 @@
+{
+  "name": "busy-noggin/bn-viewhelpers",
+  "type": "typo3-cms-extension",
+  "description": "Common view helpers for TYPO3",
+  "homepage": "http://www.busynoggin.com",
+  "license": ["GPL-2.0+"],
+  "keywords": ["TYPO3 CMS"],
+  "support": {
+    "issues": "http://www.busynoggin.com"
+  },
+  "version": "1.0.0"
+}
