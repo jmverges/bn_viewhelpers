@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Common view helpers for Busy Noggin sites',
 	'category' => 'misc',
 	'shy' => 0,
-	'version' => '1.0.0',
+	'version' => '1.0.2',
 	'dependencies' => 'cms,fluid',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,7 +34,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '6.2.0-7.9.99',
+			'typo3' => '6.2.0-8.7.99',
 			'cms' => '',
 			'extbase' => ''
 		),
