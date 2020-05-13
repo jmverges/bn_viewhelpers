@@ -35,7 +35,7 @@ class Base64ViewHelper extends AbstractViewHelper implements CompilableInterface
      * @param callable $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      *
-     * @return int
+     * @return string
      * @throws Exception
      */
     public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
@@ -44,14 +44,24 @@ class Base64ViewHelper extends AbstractViewHelper implements CompilableInterface
         if (!$filename) {
             $filename = $renderChildrenClosure();
         }
+        $filename = trim($filename);
 
-        if (!function_exists('finfo_file')) {
-            $fileInfo = new \finfo();
-            $mimeType = $fileInfo->file(PATH_site . $filename, FILEINFO_MIME_TYPE);
-        } elseif (function_exists('mime_content_type')) {
-            $mimeType = mime_content_type(PATH_site . $filename);
+        //Fix for  BE Preview
+        if ('BE' === TYPO3_MODE) {
+            return $filename;
         }
 
-        return 'data:' . $mimeType . ';base64,' . base64_encode(file_get_contents(PATH_site . $filename));
+        if (file_exists(PATH_site . $filename)) {
+            if (!function_exists('finfo_file')) {
+                $fileInfo = new \finfo();
+                $mimeType = $fileInfo->file(PATH_site . $filename, FILEINFO_MIME_TYPE);
+            } elseif (function_exists('mime_content_type')) {
+                $mimeType = mime_content_type(PATH_site . $filename);
+            }
+
+            return 'data:' . $mimeType . ';base64,' . base64_encode(file_get_contents(PATH_site . $filename));
+        }
+
+        return null;
     }
 }
